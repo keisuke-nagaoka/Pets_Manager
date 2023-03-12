@@ -7,7 +7,7 @@
     </div>
 
     <div class="flex justify-center">
-        <form method="POST" action="{{ route('pets.store') }}" class="w-1/2" enctype="multipart/form-data">
+        <form method="POST" action="{{ route('pets.store', $user->id) }}" class="w-1/2" enctype="multipart/form-data">
             @csrf
 
             <aside =class="avatar">

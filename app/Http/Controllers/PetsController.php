@@ -5,35 +5,44 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use illuminate\Support\Facades\Auth;
+
+use App\Http\Controllers\ManagementsController;
 use App\Models\User;
-use App\Models\Pets;
+use App\Models\Pet;
+use App\Models\Management;
 use Storage\App\Public;
 
 class PetsController extends Controller
 {
     public function index()
     {
+        // idの値でユーザを検索して取得
         $user = \Auth::user();
         
-        if (\Auth::user()) {
-            $pets = $user->pets;
-
-            return view('pets.index', [
-                'pets' => $pets,
-            ]);
-        }
+        // ユーザのペット一覧を取得
+        $pets = $user->pets()->paginate(10);
         
-        return view('dashboard');
+        return view('pets.index', [
+            'user' => $user,
+            'pets' => $pets,
+        ]);
     }
+    
 
     public function create()
     {
-        $pet = new Pets;
+        // ペットを新規登録
+        $pet = new Pet;
+        
+        // idの値で認証済ユーザを取得
+        $user = \Auth::user();
         
         return view('pets.create', [
             'pet' => $pet,
+            'user' => $user,
         ]);
-    }    
+    }
+    
     
     public function store(Request $request)
     {
@@ -43,8 +52,11 @@ class PetsController extends Controller
             'memos' => 'max:255',
         ]);
         
-        $pet = new Pets;
+        $pet = new Pet;
         
+        $user = \Auth::user();
+        
+        // ファイル無しの場合、ファイル無しのまま登録
         $file = $request->file('image');
         
         if (!is_null($file)) {
@@ -68,7 +80,7 @@ class PetsController extends Controller
         $pet->birthday = $request->birthday;
         $pet->sex = $request->sex;
         $pet->memos = $request->memos;
-        $pet->user_id = $request->user()->id;
+        $pet->user_id = $user->id;
         $pet->save();
 
         return redirect('/');
@@ -76,8 +88,9 @@ class PetsController extends Controller
     
     public function show($id)
     {
-        $pet = Pets::findOrFail($id);
+        $pet = Pet::findOrFail($id);
         
+        // idを取得して指定のpets.showを表示
         if (\Auth::id() === $pet->user_id) {
             return view('pets.show', [
             'pet' => $pet,
@@ -89,7 +102,8 @@ class PetsController extends Controller
     
     public function edit($id)
     {
-        $pet = Pets::findOrFail($id);
+        // idを取得して指定のpets.editを表示
+        $pet = Pet::findOrFail($id);
 
         if (\Auth::id() === $pet->user_id) {
             return view('pets.edit', [
@@ -103,19 +117,19 @@ class PetsController extends Controller
     
     public function update(Request $request, $id)
     {
-        // バリデーション
         $request->validate([
             'name' => 'required|max:50',
             'kinds' => 'required|max:50',
             'memos' => 'max:255',
         ]);
         
-        $pet = Pets::findOrFail($id);
+        // idを取得して指定のpets.editデータを反映
+        $pet = Pet::findOrFail($id);
         
         if (\Auth::id() === $pet->user_id) {
             $file = $request->file('image');
             
-            // ファイルを変更した場合のみ変更を保存する
+            // ファイル変更した場合のみ変更を保存する
             if (!is_null($file)) {
                 // ディレクトリ名
                 $dir = "pet_image";
@@ -145,9 +159,11 @@ class PetsController extends Controller
         return view('dashboard');
     }
     
+
     public function destroy($id)
     {
-        $pet = Pets::findOrFail($id);
+        // idを取得して指定のpetsを削除
+        $pet = Pet::findOrFail($id);
         
         if (\Auth::id() === $pet->user_id) {
             $pet->delete();

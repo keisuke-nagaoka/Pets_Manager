@@ -6,27 +6,26 @@ use Illuminate\Http\Request;
 
 use illuminate\Support\Facades\Auth;
 use App\Models\User;
-use App\Models\Pets;
+use App\Models\Pet;
+use App\Models\Management;
 use Storage\App\Public;
 
 class UsersController extends Controller
 {
     public function show($id)
     {
+        // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
         
-        if (\Auth::id() === $user->id) {
-            return view('users.show', [
+        return view('users.show', [
             'user' => $user,
-            ]);
-        }
-        
-        return view('dashboard');
+        ]);
     }
     
     
     public function edit($id)
     {
+        // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
 
         if (\Auth::id() === $user->id) {
@@ -41,12 +40,12 @@ class UsersController extends Controller
     
     public function update(Request $request, $id)
     {
-        // バリデーション
         $request->validate([
             'name' => 'required',
             'email' => 'required',
         ]);
-        
+
+        // idの値でユーザを検索して取得        
         $user = User::findOrFail($id);
         
         if (\Auth::id() === $user->id) {

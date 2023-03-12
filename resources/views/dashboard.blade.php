@@ -2,26 +2,16 @@
 
 @section('content')
     @if (Auth::check())
-        <!DOCTYPE html>
-        <html lang='en'>
-            <head>
-                <meta charset='utf-8' />
-                <script src='https://cdn.jsdelivr.net/npm/fullcalendar@6.1.4/index.global.min.js'></script>
-                <script>
-                    document.addEventListener('DOMContentLoaded', function() {
-                        var calendarEl = document.getElementById('calendar');
-                        var calendar = new FullCalendar.Calendar(calendarEl, {
-                            initialView: 'dayGridMonth'
-                        });
-                        calendar.render();
-                    });
-                    
-                </script>
-            </head>
-            <body>
-                <div id='calendar'></div>
-            </body>
-        </html>
+<!DOCTYPE html>
+<html>
+    <head>
+        @vite(['resources/css/app.css', 'resources/js/app.js'])
+    </head>
+    <body>
+        <div id="calendar"></div>
+    </body>
+</html>
+
     @else
     <div class="prose hero bg-base-200 mx-auto max-w-full rounded">
         <div class="hero-content text-center my-10">

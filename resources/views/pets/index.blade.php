@@ -16,6 +16,7 @@
                     <th>お迎え日（誕生日）</th>
                     <th>性別</th>
                     <th>その他、メモ（モルフなど）</th>
+                    <th></th>
                 </tr>
             </thead>
             <tbody>
@@ -29,6 +30,7 @@
                     <td>{{ $pet->birthday }}</td>
                     <td>{{ $pet->sex }}</td>
                     <td>{{ $pet->memos }}</td>
+                    <td><a class="link link-hover text-info" href="{{ route('managements.managements', $pet->id) }}">飼育記録を確認する</a></td>
                 </tr>
                 @endforeach
             </tbody>

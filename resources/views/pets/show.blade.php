@@ -10,7 +10,7 @@
         
         <div>
             <aside class="avatar">
-                <div class="w-40 rounded-full"><img src="/storage/pet_image/{{ $pet->image }}"></td>
+                <div class="w-40 rounded-full"><img src="/storage/pet_image/{{ $pet->image }}"></div>
             </aside>
         </div>
         
@@ -47,7 +47,7 @@
         @method('DELETE')
         
         <button type="submit" class="btn btn-error btn-outline"
-            onclick="return confirm('id = {{ $pet->id }} の登録を削除します。よろしいですか？')">ペットの登録を削除する</button>
+            onclick="return confirm('{{ $pet->name }} の登録を削除します。よろしいですか？')">ペットの登録を削除する</button>
     </form>
     
 @endsection

@@ -45,11 +45,7 @@ class User extends Authenticatable
     
     public function pets()
     {
-        return $this->hasmany(Pets::class);
+        return $this->hasmany(Pet::class,);
     }
     
-    public function loadRelationshipCounts()
-    {
-        $this->loadCount('pets');
-    }
 }
