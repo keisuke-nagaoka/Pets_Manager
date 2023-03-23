@@ -14,18 +14,43 @@ use Storage\App\Public;
 
 class PetsController extends Controller
 {
+    public function calendar_index()
+    {
+        // idの値でユーザを検索して取得
+        $user = \Auth::user();
+        
+        if (Auth::user()) {
+            // ユーザが所有するペット一覧を取得
+            $pets = $user->pets()->paginate(10);
+            
+            // ユーザが所有するペット一覧を表示
+            return view('pets.calendar_index', [
+                'user' => $user,
+                'pets' => $pets,
+            ]);
+        }
+        
+        return view('dashboard');
+    }
+    
+    
     public function index()
     {
         // idの値でユーザを検索して取得
         $user = \Auth::user();
         
-        // ユーザのペット一覧を取得
-        $pets = $user->pets()->paginate(10);
+        if (Auth::user()) {
+            // ユーザが所有するペット一覧を取得
+            $pets = $user->pets()->paginate(10);
+            
+            // ユーザが所有するペット一覧を表示
+            return view('pets.index', [
+                'user' => $user,
+                'pets' => $pets,
+            ]);
+        }
         
-        return view('pets.index', [
-            'user' => $user,
-            'pets' => $pets,
-        ]);
+        return view('dashboard');
     }
     
 
@@ -37,6 +62,7 @@ class PetsController extends Controller
         // idの値で認証済ユーザを取得
         $user = \Auth::user();
         
+        // ユーザが登録するペットを表示
         return view('pets.create', [
             'pet' => $pet,
             'user' => $user,
@@ -46,14 +72,17 @@ class PetsController extends Controller
     
     public function store(Request $request)
     {
+        // バリデーション
         $request->validate([
             'name' => 'required|max:50',
             'kinds' => 'required|max:50',
             'memos' => 'max:255',
         ]);
         
+        // ペットを新規登録
         $pet = new Pet;
         
+        // idの値で認証済ユーザを取得
         $user = \Auth::user();
         
         // ファイル無しの場合、ファイル無しのまま登録

@@ -11,15 +11,17 @@ class Management extends Model
     
     protected $fillable = [
         'record',
-        'register',
+        'start_date',
+        'end_date',
         'content',
         'weight',
         'image',
+        'pet_id', // pets_idからpet_idに変更
     ];
     
     protected $table = 'managements';
     
-    public function pets()
+    public function pet() // petsからpetに変更
     {
         return $this->belongsTo(Pet::class);
     }

@@ -1,0 +1,13 @@
+@charset "utf-8";
+
+.nav-bar {
+    display: flex;
+    background-color: #00ff00;
+    font-family: 'Arial Black';
+}
+
+img {
+    display: flex;
+    width: 300px;
+    height: auto;
+}

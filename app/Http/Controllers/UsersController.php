@@ -17,9 +17,13 @@ class UsersController extends Controller
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
         
-        return view('users.show', [
-            'user' => $user,
-        ]);
+        if (\Auth::id() === $user->id) {
+            return view('users.show', [
+                'user' => $user,
+            ]);
+        }
+        
+        return view('dashboard');
     }
     
     
@@ -28,6 +32,7 @@ class UsersController extends Controller
         // idの値でユーザを検索して取得
         $user = User::findOrFail($id);
 
+        // 認証済ユーザのidを取得して編集画面へ
         if (\Auth::id() === $user->id) {
             return view('users.edit', [
             'user' => $user,
@@ -48,6 +53,7 @@ class UsersController extends Controller
         // idの値でユーザを検索して取得        
         $user = User::findOrFail($id);
         
+        // 認証済ユーザのidを取得して各値を取得        
         if (\Auth::id() === $user->id) {
             $file = $request->file('image');
             

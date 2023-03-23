@@ -1,9 +1,10 @@
 <header class="mb-4">
-    <nav class="navbar bg-neutral text-neutral-content">
+    <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
+    <nav class="navbar nav-bar">
         {{-- トップページへのリンク --}}
-        <div class="flex-1">
-            <h1><a class="btn btn-ghost normal-case text-xl" href="/">Pet's Manager</a></h1>
-        </div>
+        <p class="logo">
+            <h1><a href="/"><img src="/css/image/dashboard/logo.png" alt="Pet's Manager"></a></h1>
+        </p>
 
         <div class="flex-none">
             <form method="POST" action="{{ route('logout') }}">

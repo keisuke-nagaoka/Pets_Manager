@@ -12,7 +12,8 @@
                 <tr>
                     <th>写真</th>
                     <th>活動記録</th>
-                    <th>記録日時</th>
+                    <th>開始日時</th>
+                    <th>終了日時</th>
                     <th>内容</th>
                     <th>餌量、体重</th>
                 </tr>
@@ -24,7 +25,8 @@
                         <td class="w-40 rounded-full"><img src="/storage/record_image/{{ $management->image }}"></td>
                     </aside>
                     <td><a class="link link-hover text-info" href="{{ route('managements.show', $management->id) }}">{{ $management->record }}</a></td>
-                    <td>{{ $management->register }}</td>
+                    <td>{{ $management->start_date}}</td>
+                    <td>{{ $management->end_date }}</td>
                     <td>{{ $management->content }}</td>
                     <td>{{ $management->weight }}</td>
                 </tr>

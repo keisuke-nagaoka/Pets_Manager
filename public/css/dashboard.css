@@ -1,0 +1,65 @@
+@charset "utf-8";
+
+/* 大枠ボックス */
+.layer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  margin: 0 auto;
+}
+
+/* 背景画像の読み込み */
+.layer-bg {
+  background: url(/css/image/dashboard/toppage.jpg) no-repeat 0 0;
+  background-size: 100%;
+}
+
+/* 重ねる文字の基本設定 */
+.layer-txt {
+  font-family: 'Arial Black';
+  height: 550px;
+  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
+  color: #fff;
+  letter-spacing: 0.3rem;
+  background-color: rgba(25, 25, 112, 0.6);
+}
+
+/* SP向けの設定 */
+@media screen and (max-width: 600px) {
+  .layer-txt {
+   font-size: 1.4rem;
+   padding: 4rem 0;
+  }
+}
+
+/* PC向けの設定 */
+@media screen and (min-width: 601px) {
+  .layer-txt {
+    font-size: 2rem;
+    padding: 1rem 0;
+  }
+}
+
+.fadeUp {
+  animation-name: fadeUpAnime;
+  animation-duration: 10.0s;
+  animation-fill-mode: forwards;
+  opacity: 0;
+}
+
+@keyframes fadeUpAnime{
+  from {
+    opacity: 0;
+  transform: translateY(100px);
+  }
+
+  to {
+    opacity: 1;
+  transform: translateY(0);
+  }
+}
+
+p {
+  margin-bottom: 1em;
+}

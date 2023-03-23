@@ -20,21 +20,25 @@ use App\Http\Controllers\ManagementsController;
 Route::get('/', function () {
     return view('dashboard');
 });
-//Route::get('/', [ManagementsController::class, 'index']);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
 });
-//Route::get('/dashboard', [ManagementsController::class, 'index'])->middleware(['auth'])->name('dashboard');
 
 require __DIR__.'/auth.php';
 
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['prefix' => 'users/{id}'], function() {
+        Route::get('pets_index', [PetsController::class, 'calendar_index'])->name('pets.calendar_index');
         Route::get('pets', [PetsController::class, 'index'])->name('pets.index');
         Route::post('create', [PetsController::class, 'store'])->name('pets.store');
         Route::delete('destroy', [PetsController::class, 'destroy'])->name('pets.destroy');
     });
+    
+    // イベント取得
+    Route::post('/schedule-get', [ManagementsController::class, 'scheduleGet'])->name('schedule-get');
+    // イベントクリック
+    Route::get('/managements/{id}', [ManagementsController::class, 'show'])->name('managements.show');
     
     Route::group(['prefix' => 'pets/{id}'], function () {
         Route::get('managements', [ManagementsController::class, 'managements'])->name('managements.managements');
@@ -44,5 +48,5 @@ Route::group(['middleware' => ['auth']], function () {
     
     Route::resource('users', UsersController::class);
     Route::resource('pets', PetsController::class, [ 'only' => ['create', 'show', 'edit', 'update']]);
-    Route::resource('managements', ManagementsController::class, ['only' => ['show', 'edit', 'update', 'destroy']]);
+    Route::resource('managements', ManagementsController::class, ['only' => ['edit', 'update', 'destroy']]);
 });
