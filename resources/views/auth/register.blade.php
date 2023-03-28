@@ -2,8 +2,13 @@
 
 @section('content')
 
-    <div class="prose mx-auto text-center">
-        <h2>新規登録</h2>
+    <head>
+        <link rel="stylesheet" href="/css/register_login.css">
+    </head>
+
+    <body>
+    <div class="title">
+        <h2>- 新規登録 -</h2>
     </div>
 
     <div class="flex justify-center">
@@ -38,7 +43,9 @@
                 <input type="password" name="password_confirmation" class="input input-bordered w-full">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block normal-case">ユーザ登録</button>
+            <button type="submit" class="btn btn-block normal-case">さあ、始めよう！（ユーザ登録）</button>
         </form>
     </div>
+    </body>
+    
 @endsection

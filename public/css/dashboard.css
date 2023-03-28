@@ -1,28 +1,106 @@
 @charset "utf-8";
 
-/* 大枠ボックス */
+.fc-mon,
+.fc-day-mon,
+.fc-tue,
+.fc-day-tue,
+.fc-wed,
+.fc-day-wed,
+.fc-thu,
+.fc-day-thu,
+.fc-fri,
+.fc-day-fri {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+}
+
+.fc-sat,
+.fc-day-sat {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  background-color: rgba(135, 206, 235, 0.3);
+}
+
+.fc-sun,
+.fc-day-sun {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  background-color: rgba(255, 0, 0, 0.3);
+}
+
+#calendar {
+  position: relative;
+}
+
+.fc-toolbar-title {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  position: relative;
+  z-index: 1;
+}
+
+#calendar::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(240, 248, 255, 0.7);
+  z-index: -1;
+}
+
+#calendar::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: url('/css/image/dashboard/toppage.jpg');
+  background-size: 100% 100%;
+  z-index: -2;
+}
+
+.fc .fc-col-header-cell,
+.fc .fc-scrollgrid,
+.fc .fc-scrollgrid-section > *,
+.fc .fc-daygrid-day {
+  border-color: #808080;
+}
+
+body {
+  padding-top: 50px;
+}
+
 .layer {
-  display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
   margin: 0 auto;
 }
 
-/* 背景画像の読み込み */
 .layer-bg {
-  background: url(/css/image/dashboard/toppage.jpg) no-repeat 0 0;
-  background-size: 100%;
+  background: url(/css/image/dashboard/toppage.jpg);
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    background-position: center;
+    position: static;
 }
 
-/* 重ねる文字の基本設定 */
 .layer-txt {
-  font-family: 'Arial Black';
-  height: 550px;
-  text-shadow: 1px 1px 4px rgba(0,0,0,0.4);
-  color: #fff;
+  font-family: 'メイリオ', 'HiraKakuProN';
+  height: auto;
+  text-shadow:
+    -1px -1px 0 #fffafa,
+     1px -1px 0 #fffafa,
+    -1px  1px 0 #fffafa,
+     1px  1px 0 #fffafa;
+  color: #000000;
   letter-spacing: 0.3rem;
-  background-color: rgba(25, 25, 112, 0.6);
+  background-color: rgba(240, 248, 255, 0.6);
 }
 
 /* SP向けの設定 */
@@ -62,4 +140,57 @@
 
 p {
   margin-bottom: 1em;
+}
+
+.btn {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 15px;
+    text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+    background-color: rgba(173, 255, 47, 0.6);
+}
+
+.btn:hover {
+    background-color: rgba(255, 215, 0, 0.6);
+}
+
+.btn-lg {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 15px;
+    text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+    background-color: #adff2f;
+}
+
+.btn-lg:hover {
+    background-color: #ffd700;
+}
+
+.link-items {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #ffffff;
+}
+
+.link-items:hover {
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #adff2f;
+  background-color: rgba(128, 128, 128, 0.6);
 }

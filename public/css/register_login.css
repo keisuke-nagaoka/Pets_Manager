@@ -1,0 +1,96 @@
+@charset "utf-8";
+
+body {
+    width: 100%;
+    height: 100vh;
+    background-repeat: no-repeat;
+    background: url(/css/image/register_login_image.jpg);
+    background-size: 100% 100%;
+    background-position: center;
+    position: static;
+    padding-top: 50px;
+}
+
+.title {
+    color: #ffffff;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-weight: bold;
+    font-size: 30px;
+    text-align: center;
+    text-shadow: 
+    -1px -1px 0 #000000,
+     1px -1px 0 #000000,
+    -1px  1px 0 #000000,
+     1px  1px 0 #000000;
+}
+
+.label-text {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 15px;
+    font-weight: bold;
+    text-align: left;
+    text-shadow: 
+    -1px -1px 0 #fffafa,
+     1px -1px 0 #fffafa,
+    -1px  1px 0 #fffafa,
+     1px  1px 0 #fffafa;
+    background-color: rgba(240, 248, 255, 0.6);
+}
+
+.btn {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 15px;
+    text-shadow:
+    -1px -1px 0 #ffffff,
+     1px -1px 0 #ffffff,
+    -1px  1px 0 #ffffff,
+     1px  1px 0 #ffffff;
+    background-color: rgba(173, 255, 47, 0.6);
+}
+
+.btn:hover {
+    background-color: rgba(255, 215, 0, 0.6);
+}
+
+.link-items {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #ffffff;
+}
+
+.link-items:hover {
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #adff2f;
+  background-color: rgba(128, 128, 128, 0.6);
+}
+
+.link {
+  text-shadow:
+    -1px -1px 0 #000000,
+     1px -1px 0 #000000,
+    -1px  1px 0 #000000,
+     1px  1px 0 #000000;
+  color: #00bfff;
+  background-color: rgba(240, 248, 255, 0.6);
+}
+
+.link:hover {
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #ffffff;
+  background-color: rgba(0, 0, 255, 0.6);
+}

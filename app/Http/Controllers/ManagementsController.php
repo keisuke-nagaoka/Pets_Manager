@@ -27,7 +27,7 @@ class ManagementsController extends Controller
                 'managements.start_date as start',
                 'managements.end_date as end',
                 'managements.record as title',
-                'managements.id as id' // 追加
+                'managements.id as id'
             )
             ->where('pets.user_id', '=', auth()->user()->id)
             ->where('managements.end_date', '>', $start_date)
@@ -136,62 +136,53 @@ class ManagementsController extends Controller
     }
     
 
-    // 修正中(show,editのみ他ユーザがURL直打ちで侵入可能！！)
     public function show($id)
     {
-/*        // idからペットを検索して取得
-        $pet = Pet::findOrFail($id);
-        
-        // ペットの飼い主のidを取得
-        $owner = $pet->user_id;
-        
-        // ログイン中ユーザのidを取得
-        $user = Auth::user()->id;
-        
-        // 飼い主とログイン中ユーザのidが一致しない場合、トップページにリダイレクト
-        if ($owner === $user) {
-            return redirect('/');
-        } */
-        
         // ペットに紐付く飼育記録を取得し表示
         $management = Management::findOrFail($id);
         
-        if (Pet::findOrFail($management->pet_id)) {
-            return view('managements.show', [
-            'management' => $management,
-            ]);
+        // ペットを取得
+        $pet = $management->pet;
+        
+        // ペットの飼い主のidえお取得
+        $owner = $pet->user_id;
+        
+        // ログイン中のユーザを取得
+        $user = Auth::id();
+        
+        // 飼育記録に紐付くペットの所有者と、ログイン中のユーザーが一致しない場合、トップページにリダイレクトする
+        if ($owner !== $user) {
+            return redirect('/');
         }
         
-        return view('dashboard');
+        return view('managements.show', [
+            'management' => $management,
+        ]);
     }
     
 
     public function edit($id)
     {
-/*        // idからペットを検索して取得
-        $pet = Pet::findOrFail($id);
+        // ペットに紐付く飼育記録を取得し表示
+        $management = Management::findOrFail($id);
         
-        // ペットの飼い主のidを取得
+        // ペットを取得
+        $pet = $management->pet;
+        
+        // ペットの飼い主のidえお取得
         $owner = $pet->user_id;
         
-        // ログイン中ユーザのidを取得
-        $user = Auth::user()->id;
+        // ログイン中のユーザを取得
+        $user = Auth::id();
         
-        // 飼い主とログイン中ユーザのidが一致しない場合、トップページにリダイレクト
-        if ($owner === $user) {
+        // 飼育記録に紐付くペットの所有者と、ログイン中のユーザーが一致しない場合、トップページにリダイレクトする
+        if ($owner !== $user) {
             return redirect('/');
-        } */
-        
-        // ペットに紐付く飼育記録を取得し編集ページへ
-        $management = Management::findOrFail($id);
-
-        if (Pet::findOrFail($management->pet_id)) {
-            return view('managements.edit', [
-            'management' => $management,
-            ]);
         }
         
-        return view('dashboard');
+        return view('managements.edit', [
+            'management' => $management,
+        ]);
     }
     
     
@@ -229,7 +220,7 @@ class ManagementsController extends Controller
             // データベースに編集内容を保存
             $management->record = $request->record;
             $management->start_date = $request->start_date;
-            $management->end_date = $management->end_date;
+            $management->end_date = $request->end_date;
             $management->content = $request->content;
             $management->weight = $request->weight;
             $management->save();

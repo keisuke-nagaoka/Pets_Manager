@@ -1,6 +1,6 @@
 <header class="mb-4">
     <link rel="stylesheet" href="{{ asset('/css/navbar.css') }}">
-    <nav class="navbar nav-bar">
+    <nav class="nav-bar">
         {{-- トップページへのリンク --}}
         <p class="logo">
             <h1><a href="/"><img src="/css/image/dashboard/logo.png" alt="Pet's Manager"></a></h1>
@@ -17,7 +17,7 @@
                         @if (Auth::check())
                             {{ Auth::user()->name }}
                         @else
-                            Guest
+                            ゲスト
                         @endif
                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
                             <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />

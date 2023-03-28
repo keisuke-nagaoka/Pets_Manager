@@ -1,11 +1,13 @@
 @extends('layouts.app')
 
 @section('content')
+
     @if (Auth::check())
     
         <!DOCTYPE html>
         <html>
             <head>
+                <link rel="stylesheet" href="{{ asset('/css/dashboard.css') }}">
                 @vite(['resources/js/app.js'])
             </head>
             <body>
@@ -27,10 +29,10 @@
                         <p>できることはこちらから → <a href="{{ route('login') }}">できること</a></p>
                         <p>ユーザ登録はこちらから</p>
                         {{-- ユーザ登録ページへのリンク --}}
-                        <a class="btn btn-primary btn-lg normal-case" href="{{ route('register') }}">新規登録</a>
+                        <a class="btn btn-lg" href="{{ route('register') }}">新規登録</a>
                         <p>登録済の方はこちらから</p>
                         {{-- ログインページへのリンク --}}
-                        <a class="btn btn-primary btn-lg normal-case" href="{{ route('login') }}">ログイン</a>
+                        <a class="btn btn-lg" href="{{ route('login') }}">ログイン</a>
                     </div>
                 </div>
             </body>

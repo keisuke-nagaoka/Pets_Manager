@@ -2,8 +2,13 @@
 
 @section('content')
 
-    <div class="prose mx-auto text-center">
-        <h2>ログイン</h2>
+    <head>
+        <link rel="stylesheet" href="/css/register_login.css">
+    </head>
+
+    <body>
+    <div class="title">
+        <h2>- ログイン -</h2>
     </div>
 
     <div class="flex justify-center">
@@ -24,10 +29,11 @@
                 <input type="password" name="password" class="input input-bordered w-full">
             </div>
 
-            <button type="submit" class="btn btn-primary btn-block normal-case">ログイン</button>
+            <button type="submit" class="btn btn-block normal-case">Pet's Managerを再開する（ログイン）</button>
         </font>
 
         {{-- ユーザ登録ページへのリンク --}}
-        <p class="mt-2"><a class="link link-hover text-info" href="{{ route('register') }}">ユーザ登録がまだの方はこちら</a></p>
+        <p class="mt-2"><a class="link" href="{{ route('register') }}">ユーザ登録がまだの方はこちら</a></p>
     </div>
+    </body>
 @endsection

@@ -112,7 +112,7 @@ class PetsController extends Controller
         $pet->user_id = $user->id;
         $pet->save();
 
-        return redirect('/');
+        return view('dashboard');
     }
     
     public function show($id)

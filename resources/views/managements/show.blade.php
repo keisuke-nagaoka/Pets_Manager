@@ -2,15 +2,24 @@
 
 @section('content')
 
-    <div class="prose ml-4">
+    <head>
+        <link rel="stylesheet" href="/css/show.css">
+    </head>
+
+    <body id="background">
+    <div class="title">
         <h2>飼育記録</h2>
     </div>
     
-    <table class="table w-full my-4">
+    <table class="w-full">
 
         <tr>
             <th>記録の写真</th>
-            <td><div class="w-40 rounded-full"><img src="/storage/record_image/{{ $management->image }}"></div></td>
+            <td>
+                <aside class="avatar">
+                    <div class="w-40"><img src="/storage/record_image/{{ $management->image }}"></div>
+                </aside>
+            </td>
         </tr>
         
         <tr>
@@ -39,13 +48,13 @@
         </tr>
     </table>
     
-    <a class="btn btn-ountline" href="{{ route('managements.edit', $management->id) }}">飼育記録を編集する</a>
+    <a class="btn" href="{{ route('managements.edit', $management->id) }}">飼育記録を編集する</a>
     
     <form method="POST" action="{{ route('managements.destroy', $management->id) }}" class="my-2">
         @csrf
         @method('DELETE')
         
-        <button type="submit" class="btn btn-error btn-outline"
+        <button type="submit" class="btn btn-delete"
             onclick="return confirm('{{ $management->record }} の記録を削除します。よろしいですか？')">飼育記録を削除する</button>
     </form>
     

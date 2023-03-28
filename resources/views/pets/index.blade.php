@@ -2,12 +2,17 @@
 
 @section('content')
 
-    <div class="prose ml-4">
-        <h2>ペット一覧</h2>
+    <head>
+        <link rel="stylesheet" href="/css/index.css">
+    </head>
+
+    <body>
+    <div class="title">
+        <h2>{{ $user->name }} さんのペット一覧</h2>
     </div>
 
     @if (isset($pets))
-        <table class="table table-zebra w-full my-4">
+        <table class="w-full">
             <thead>
                 <tr>
                     <th>アイコン</th>
@@ -22,21 +27,26 @@
             <tbody>
                 @foreach ($pets as $pet)
                 <tr>
-                    <aside class="avatar">
-                        <td class="w-40 rounded-full"><img src="/storage/pet_image/{{ $pet->image }}"></td>
-                    </aside>
-                    <td><a class="link link-hover text-info" href="{{ route('pets.show', $pet->id) }}">{{ $pet->name }}</a></td>
+                    <td>
+                        <aside class="avatar">
+                            <div class="w-40"><img src="/storage/pet_image/{{ $pet->image }}"></div>
+                        </aside>
+                    </td>
+                    <td><a class="content link" href="{{ route('pets.show', $pet->id) }}">{{ $pet->name }}</a></td>
                     <td>{{ $pet->kinds }}</td>
                     <td>{{ $pet->birthday }}</td>
                     <td>{{ $pet->sex }}</td>
                     <td>{{ $pet->memos }}</td>
-                    <td><a class="link link-hover text-info" href="{{ route('managements.managements', $pet->id) }}">飼育記録を確認する</a></td>
+                    <td><a class="content link" href="{{ route('managements.managements', $pet->id) }}">飼育記録を確認する</a></td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+        {{-- ページネーションのリンク --}}
+        {{ $pets->links() }}
     @endif
     
-    <a class="btn btn-primary" href="{{ route('pets.create') }}">ペットの新規登録</a>
+    <a class="btn" href="{{ route('pets.create') }}">ペットの新規登録</a>
+    </body>
 
 @endsection
