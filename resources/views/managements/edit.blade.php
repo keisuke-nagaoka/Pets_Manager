@@ -22,9 +22,13 @@
                 <input class="image" type="file" name="image" value="/storage/record_image/{{ $management->image }}">
                 
                 <div class="form-control my-4">
-                    <span class="label-text">何を記録する？</span>
+                    <label for="select" class="label">
+                        <span class="label-text">何を記録する？ <a class="must">*必須項目</a></span>
+                    </label>
+                    <input type="text" name="record" value="{{ $management->record }}" class="input input-bordered w-full">
+                    
+                    {{--
                     <select name="record">
-                        <option value="">▼活動を選択する <a class="must">*必須項目</a></option>
                         <option>今日の様子（日記）</option>
                         <option>ゴハン</option>
                         <option>おやつ</option>
@@ -35,6 +39,8 @@
                         <option>体重測定</option>
                         <option>その他</option>
                     </select>
+                    --}}
+                    
                 </div>
 
                 <div class="form-control my-4">

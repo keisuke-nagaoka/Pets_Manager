@@ -1,0 +1,61 @@
+@charset "utf-8";
+
+.how-to-use {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 20px;
+    padding-left: 30px;
+    padding-top: 60px
+}
+
+.manual-image {
+    width: 80%;
+    height: auto;
+}
+
+.margin {
+    margin-top: 20px;
+}
+
+.let {
+    color: #000000;
+    font-size: 30px;
+    font-weight: bold;
+}
+
+a.btn {
+    color: #000000;
+    font-family: 'メイリオ', 'HiraKakuProN';
+    font-size: 15px;
+    text-shadow:
+      -1px -1px 0 #ffffff,
+       1px -1px 0 #ffffff,
+      -1px  1px 0 #ffffff,
+       1px  1px 0 #ffffff;
+    background-color: #adff2f;
+}
+
+a.btn:hover {
+    background-color: #ffd700;
+}
+
+a.link-items {
+  font-family: 'メイリオ', 'HiraKakuProN';
+  font-weight: bold;
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #ffffff;
+}
+
+a.link-items:hover {
+  text-shadow:
+    -1px -1px 0 #808080,
+     1px -1px 0 #808080,
+    -1px  1px 0 #808080,
+     1px  1px 0 #808080;
+  color: #adff2f;
+  background-color: rgba(128, 128, 128, 0.6);
+}

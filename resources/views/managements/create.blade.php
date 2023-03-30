@@ -23,18 +23,20 @@
             </aside>
 
             <div class="form-control my-4">
-                <span class="label-text">何を記録する？</span>
+                <label for="text" class="label">
+                    <span class="label-text">何を記録する？ <a class="must">*必須項目</a></span>
+                </label>
                     <select name="record">
-                        <option value="">▼活動を選択する <a class="must">*必須項目</a></option>
-                        <option>今日の様子（日記）</option>
-                        <option>ゴハン</option>
-                        <option>おやつ</option>
-                        <option>トイレ</option>
-                        <option>掃除</option>
-                        <option>通院</option>
-                        <option>餌の量</option>
-                        <option>体重測定</option>
-                        <option>その他</option>
+                        <option value="▼活動を選択する">▼活動を選択する</option>
+                        <option value="今日の様子（日記）">今日の様子（日記）</option>
+                        <option value="ゴハン">ゴハン</option>
+                        <option value="おやつ">おやつ</option>
+                        <option value="トイレ">トイレ</option>
+                        <option value="掃除">掃除</option>
+                        <option value="通院">通院</option>
+                        <option value="餌の量">餌の量</option>
+                        <option value="体重測定">体重測定</option>
+                        <option value="その他">その他</option>
                     </select>
             </div>
 

@@ -26,7 +26,7 @@
                 <div class="layer layer-bg">
                     <div class="layer-txt fadeUp">
                         <p>Pet's Managerはペット飼育総合管理サービスです。<br>ご利用いただくにはユーザ登録が必要です。</p>
-                        <p>できることはこちらから → <a href="{{ route('login') }}">できること</a></p>
+                        <p>できることはこちらから → <a id="manual" href="{{ route('manual') }}">Pet's Managerでできること</a></p>
                         <p>ユーザ登録はこちらから</p>
                         {{-- ユーザ登録ページへのリンク --}}
                         <a class="btn btn-lg" href="{{ route('register') }}">新規登録</a>

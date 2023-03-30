@@ -4,6 +4,8 @@
     <li class="divider lg:hidden"></li>
     {{-- 登録ペット一覧ページへのリンク --}}
     <li><a class="link-items" href="{{ route('pets.index', Auth::user()->id) }}">登録ペット一覧</a></li>
+    {{-- ペットの新規登録ページへのリンク --}}
+    <li><a class="link-items" href="{{ route('pets.create', Auth::user()->id) }}">ペットの新規登録</a></li>
     {{-- ログアウトへのリンク --}}
     <li><a class="link-items" href="#" onclick="event.preventDefault();this.closest('form').submit();">ログアウト</a></li>
 @else
