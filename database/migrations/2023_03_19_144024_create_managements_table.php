@@ -19,9 +19,9 @@ return new class extends Migration
             $table->string('record');
             $table->datetime('start_date');
             $table->datetime('end_date');
-            $table->string('content');
-            $table->integer('weight');
-            $table->string('image');
+            $table->string('content')->nullable();
+            $table->integer('weight')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
             
             $table->foreign('pet_id')->references('id')->on('pets');
