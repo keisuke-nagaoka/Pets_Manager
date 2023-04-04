@@ -16,9 +16,15 @@
             @method('PUT')
 
                 <div class="w-40">
-                    <img src="/storage/user_image/{{ $user->image }}">
+                    <div class="w-40 rounded">
+                        @if ($user->image === null)
+                            <img src="{{ Storage::disk('s3')->url('user_image/petsmanager_null_logo.JPG') }}">
+                        @else
+                            <img src="{{ $user->image }}">
+                        @endif
+                    </div>
                 </div>
-                    <input class="image" type="file" name="image" value="/storage/user_image/{{ $user->image }}">
+                    <input class="image" type="file" name="image" value="{{ $user->image }}">
 
                 <div class="form-control my-4">
                     <label for="name" class="label">

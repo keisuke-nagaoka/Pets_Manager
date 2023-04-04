@@ -16,10 +16,16 @@
             @csrf
             @method('PUT')
 
-                <div class="w-40">
-                    <img src="/storage/record_image/{{ $management->image }}">
-                </div>
-                <input class="image" type="file" name="image" value="/storage/record_image/{{ $management->image }}">
+                <aside class="avatar">
+                    <div class="w-40 rounded">
+                        @if ($management->image === null)
+                            <img src="{{ Storage::disk('s3')->url('management_image/petsmanager_null_logo.JPG') }}">
+                        @else
+                            <img src="{{ $management->image }}">
+                        @endif
+                    </div>
+                    <input class="image" type="file" name="image" value="{{ $management->image }}">
+                </aside>
                 
                 <div class="form-control my-4">
                     <label for="select" class="label">

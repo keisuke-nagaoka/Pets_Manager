@@ -28,7 +28,13 @@
                 <tr>
                     <td>
                         <aside class="avatar">
-                            <div class="w-40"><img src="/storage/record_image/{{ $management->image }}"></div>
+                            <div class="w-40 rounded">
+                                @if ($management->image === null)
+                                    <img src="{{ Storage::disk('s3')->url('management_image/petsmanager_null_logo.JPG') }}">
+                                @else
+                                    <img src="{{ $management->image }}">
+                                @endif
+                            </div>
                         </aside>
                     </td>
                     <td><a class="content link" href="{{ route('managements.show', $management->id) }}">{{ $management->record }}</a></td>

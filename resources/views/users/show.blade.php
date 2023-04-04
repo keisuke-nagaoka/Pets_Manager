@@ -17,7 +17,13 @@
             <th>アイコン</th>
             <td>
             <aside class="avatar">
-                <div class="w-40 rounded"><img src="/storage/user_image/{{ $user->image }}"></div>
+                <div class="w-40 rounded">
+                    @if ($user->image === null)
+                        <img src="{{ Storage::disk('s3')->url('user_image/petsmanager_null_logo.JPG') }}">
+                    @else
+                        <img src="{{ $user->image }}">
+                    @endif
+                </div>
             </aside>
             </td>
         </tr>

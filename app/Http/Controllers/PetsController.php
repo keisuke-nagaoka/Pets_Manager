@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use illuminate\Support\Facades\Auth;
-
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\File;
 use App\Http\Controllers\ManagementsController;
 use App\Models\User;
 use App\Models\Pet;
 use App\Models\Management;
-use Storage\App\Public;
+// use Storage\App\Public; ローカルストレージでファイルを保存時に使用
 
 class PetsController extends Controller
 {
@@ -76,6 +77,7 @@ class PetsController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'kinds' => 'required|max:50',
+            'birthday' => 'nullable|date',
             'memos' => 'max:255',
         ]);
         
@@ -85,7 +87,26 @@ class PetsController extends Controller
         // idの値で認証済ユーザを取得
         $user = \Auth::user();
         
-        // ファイル無しの場合、ファイル無しのまま登録
+        $file = $request->file('image');
+        
+        // ファイルを変更した場合のみ変更を保存する
+        if (!is_null($file)) {
+            
+            // アップロードしたファイル名を取得
+            $file_name = $request->file('image')->getClientOriginalName();
+            
+            // s3のバケットURLを取得
+            $file_path = Storage::disk('s3')->putFile('pet_image', $file);
+            
+            // 取得したファイル名のまま保存
+            $request->file('image')->storeAs('pet_image', $file_name, 's3');
+            
+            // s3のバケットURLを取得してデータベースに登録内容を保存
+            $pet->image = Storage::disk('s3')->url($file_path);
+        }
+
+
+        /* ローカルストレージでファイルを保存する場合に使用
         $file = $request->file('image');
         
         if (!is_null($file)) {
@@ -101,9 +122,9 @@ class PetsController extends Controller
         
             // データベースに編集内容を保存
             $pet->image = $file_name;
-        }
+        } */
 
-        // データベースに編集内容を保存
+        // データベースに登録内容を保存
         $pet->name = $request->name;
         $pet->kinds = $request->kinds;
         $pet->birthday = $request->birthday;
@@ -149,6 +170,7 @@ class PetsController extends Controller
         $request->validate([
             'name' => 'required|max:50',
             'kinds' => 'required|max:50',
+            'birthday' => 'nullable|date',
             'memos' => 'max:255',
         ]);
         
@@ -156,9 +178,27 @@ class PetsController extends Controller
         $pet = Pet::findOrFail($id);
         
         if (\Auth::id() === $pet->user_id) {
+            
             $file = $request->file('image');
             
-            // ファイル変更した場合のみ変更を保存する
+            // ファイルを変更した場合のみ変更を保存する
+            if (!is_null($file)) {
+            
+                // アップロードしたファイル名を取得
+                $file_name = $request->file('image')->getClientOriginalName();
+            
+                // s3のバケットURLを取得
+                $file_path = Storage::disk('s3')->putFile('pet_image', $file);
+            
+                // 取得したファイル名のまま保存
+                $request->file('image')->storeAs('pet_image', $file_name, 's3');
+            
+                // s3のバケットURLを取得してデータベースに編集内容を保存
+                $pet->image = Storage::disk('s3')->url($file_path);
+            }
+            
+            
+            /* ローカルストレージでファイルを保存する場合に使用
             if (!is_null($file)) {
                 // ディレクトリ名
                 $dir = "pet_image";
@@ -172,7 +212,8 @@ class PetsController extends Controller
                 // データベースに編集内容を保存
                 $pet->image = $file_name;
                 $pet->save();
-            }
+            } */
+            
 
             // データベースに編集内容を保存
             $pet->name = $request->name;

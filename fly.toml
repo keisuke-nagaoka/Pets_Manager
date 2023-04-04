@@ -17,12 +17,18 @@ processes = []
   LOG_STDERR_FORMATTER = "Monolog\\Formatter\\JsonFormatter"
   APP_URL = "https://pets-manager.fly.dev"
   APP_NAME = "pets-manager"
-  APP_DEBUG = false
+  APP_DEBUG = "false"
   DB_CONNECTION = "pgsql"
   DB_HOST = "db.manlymwleqavrpiqkapk.supabase.co"  
   DB_PORT = 5432
   DB_DATABASE = "postgres"
   DB_USERNAME = "postgres"
+  AWS_ACCESS_KEY_ID = "AKIA3KHKQYSE7T3EFUML"
+  AWS_SECRET_ACCESS_KEY = "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"
+  AWS_DEFAULT_REGION= "ap-northeast-1"
+  AWS_BUCKET= "petsmanager-images"
+  AWS_USE_PATH_STYLE_ENDPOINT = "false"
+  AWS_URL = "https://s3.ap-northeast-1.amazonaws.com/petsmanager-images"
 
 [experimental]
   auto_rollback = true
